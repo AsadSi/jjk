@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+  <a href="/" class="nav-logo">伏黒恵 — fushiguromegumi.com</a>
+  <ul class="nav-links">
+    <li><a href="#overview">概観 / Overview</a></li>
+    <li><a href="#registry">術師 / Characters</a></li>
+    <li><a href="#series">呪術世界 / Series</a></li>
+    <li><a href="#credits">記録 / Credits</a></li>
+  </ul>
+</nav>
+
+<section class="home-hero">
+  <div class="hero-kanji-mark">呪術廻戦</div>
+  <div class="home-hero-content">
+    <h1>Jujutsu<br /><em style="font-style: italic; color: var(--ink-soft)">Kaisen</em></h1>
+    <p>
+      A comprehensive showcase of characters from Gege Akutami's dark fantasy masterpiece.
+      Explore the sorcerers, curses, and antiheroes that define the world of jujutsu.
+    </p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section id="overview">
+  <p class="section-label">Universe Overview</p>
+  <div class="techniques-intro reveal">
+    <h2>Inside the world of<br /><em>Jujutsu Kaisen</em></h2>
+    <p>
+      In Jujutsu Kaisen, curses are born from human negativity and jujutsu sorcerers are trained to
+      neutralize them. This showcase focuses on the key fighters, mentors, and antagonists whose
+      choices shape the major arcs of the series.
+    </p>
+  </div>
+</section>
+
+<section id="registry">
+  <p class="section-label">Character Registry</p>
+  <div class="character-grid">
+    {% for character in characters %}
+    <a href="/characters/{{ character.slug }}" class="character-card reveal">
+      <div class="card-image-wrap">
+        <img src="{{ character.image }}" alt="{{ character.name }}" class="card-image" />
+        <div class="card-jp">{{ character.jpName }}</div>
+      </div>
+      <h3>{{ character.name }}</h3>
+      <div class="role">{{ character.title }}</div>
+      <p>{{ character.bio[0] }}</p>
+      <span class="link-text">View Profile →</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="series" class="jjk-section">
+  <p class="section-label reveal">Series Information</p>
+  <div class="jjk-inner reveal">
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.02em;">
+      Read / Watch<br />
+      <em>Quick Guide</em>
+    </h2>
+    <div class="jjk-columns">
+      <div class="jjk-col">
+        <h3>Anime Order</h3>
+        <p>Season 1 -> Jujutsu Kaisen 0 -> Season 2 (Hidden Inventory / Shibuya Incident).</p>
+        <p>Future arcs continue from the Culling Game storyline in the manga.</p>
+      </div>
+      <div class="jjk-col">
+        <h3>Core Themes</h3>
+        <p>Loss, identity, and the burden of power drive most character decisions.</p>
+        <p>The story repeatedly asks what makes a life worth protecting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="credits">
+  <p class="section-label reveal">Project Credits</p>
+  <div class="identity reveal">
+    <div>
+      <h2 class="identity-headline">
+        Final notes<br />
+        and <em>sources</em>
+      </h2>
+    </div>
+    <div class="identity-body">
+      <p>
+        This is a fan-made character showcase for Jujutsu Kaisen and is not affiliated with MAPPA,
+        Shueisha, or Gege Akutami.
+      </p>
+      <p>
+        Character portrait references are sourced from the Jujutsu Kaisen Fandom character pages.
+      </p>
+      <p>
+        Last content refresh: April 2026. Data includes major anime and manga-era character context.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    Jujutsu<br />
+    <em>Kaisen</em>
+  </div>
+  <div class="footer-right">
+    <div class="footer-domain">fushiguromegumi.com</div>
+    <div class="footer-copy">
+      A fan showcase of characters from<br />
+      Gege Akutami's Jujutsu Kaisen. All characters &amp;<br />
+      story belong to their respective rights holders.
+    </div>
+  </div>
+</footer>
+{% endblock %}
