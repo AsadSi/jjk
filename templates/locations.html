@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="hero-section">
+    <h1 class="page-title">Locations</h1>
+    <p class="page-subtitle">Explore the world of Jujutsu Kaisen</p>
+  </section>
+
+  <section class="content-section">
+    <div class="locations-grid">
+      {% for location in locations %}
+      <a href="/locations/{{ location.slug }}" class="location-card">
+        <div class="location-card-header">
+          <h3>{{ location.name }}</h3>
+          <span class="location-type">{{ location.type }}</span>
+        </div>
+        <div class="location-card-body">
+          <p class="location-region">📍 {{ location.region }}</p>
+          <p class="location-desc">{{ location.description[:120] }}...</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<style>
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .location-card {
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.1), rgba(0, 0, 0, 0.3));
+    border: 2px solid rgba(100, 150, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .location-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(100, 150, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(100, 150, 255, 0.2);
+  }
+
+  .location-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+  }
+
+  .location-card-header h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .location-type {
+    background: rgba(100, 150, 255, 0.2);
+    color: #6496ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .location-region {
+    margin: 10px 0;
+    color: rgba(100, 150, 255, 0.7);
+    font-weight: bold;
+  }
+
+  .location-desc {
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+  }
+</style>
+{% endblock %}

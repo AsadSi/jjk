@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="hero-section">
+    <h1 class="page-title">Cursed Spirits</h1>
+    <p class="page-subtitle">The malevolent entities of the Jujutsu world</p>
+  </section>
+
+  <section class="content-section">
+    <div class="spirits-grid">
+      {% for spirit in spirits %}
+      <a href="/cursed-spirits/{{ spirit.slug }}" class="spirit-card">
+        <div class="spirit-card-header">
+          <h3>{{ spirit.name }}</h3>
+          <span class="spirit-grade">{{ spirit.power_level }}</span>
+        </div>
+        <div class="spirit-card-body">
+          <p class="spirit-title">{{ spirit.title }}</p>
+          <p class="spirit-desc">{{ spirit.description[:120] }}...</p>
+          <div class="spirit-meta">
+            <span class="threat-{{ spirit.threat_level.lower() }}">⚠️ {{ spirit.threat_level }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<style>
+  .spirits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .spirit-card {
+    background: linear-gradient(135deg, rgba(200, 50, 50, 0.1), rgba(100, 0, 0, 0.1));
+    border: 2px solid rgba(200, 50, 50, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .spirit-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(200, 50, 50, 0.8);
+    box-shadow: 0 10px 30px rgba(200, 50, 50, 0.2);
+  }
+
+  .spirit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+  }
+
+  .spirit-card-header h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .spirit-grade {
+    background: rgba(200, 50, 50, 0.3);
+    color: #ff4444;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .spirit-title {
+    margin: 10px 0;
+    color: rgba(200, 100, 100, 0.8);
+    font-weight: bold;
+  }
+
+  .spirit-desc {
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+  }
+
+  .spirit-meta {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(200, 50, 50, 0.2);
+  }
+
+  .threat-extreme {
+    color: #ff1111;
+    font-weight: bold;
+  }
+
+  .threat-high {
+    color: #ff6666;
+  }
+
+  .threat-catastrophic {
+    color: #ff0000;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}

@@ -1,5 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,200&family=Noto+Serif+JP:wght@200;300;400&display=swap');
 
+/* Dark Theme Styles */
+body.dark-theme {
+  background: #0a0e27;
+  color: #e8e8e8;
+}
+
+.navbar {
+  background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 25, 50, 0.95));
+  border-bottom: 1px solid rgba(255, 50, 50, 0.2);
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff3232;
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  color: #ff3232;
+  transform: translateX(3px);
+}
+
+/* Container styles for dark theme pages */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+body {
+  background: #0a0e27;
+  color: #e8e8e8;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 60px 0 40px;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.content-section {
+  width: 100%;
+}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {

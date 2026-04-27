@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="technique-detail">
+    <div class="technique-header">
+      <div class="technique-header-content">
+        <span class="tech-rank-badge">{{ technique.power_level }}</span>
+        <h1 class="technique-title">{{ technique.name }}</h1>
+        <p class="technique-jp-title">{{ technique.jpName }}</p>
+      </div>
+    </div>
+
+    <div class="technique-content">
+      <div class="tech-info-grid">
+        <div class="tech-info-box">
+          <h3>Type</h3>
+          <p>{{ technique.type }}</p>
+        </div>
+        <div class="tech-info-box">
+          <h3>User</h3>
+          <p>{{ technique.user }}</p>
+        </div>
+        <div class="tech-info-box">
+          <h3>Power Level</h3>
+          <p>{{ technique.power_level }}</p>
+        </div>
+      </div>
+
+      <section class="technique-section">
+        <h2>Description</h2>
+        <p class="technique-description">{{ technique.description }}</p>
+      </section>
+
+      <section class="technique-section">
+        <h2>Core Abilities</h2>
+        <ul class="core-abilities-list">
+          {% for ability in technique.abilities %}
+          <li class="core-ability-item">{{ ability }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <div class="navigation-links">
+        <a href="/techniques" class="btn-back">← Back to Techniques</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .technique-detail {
+    padding: 40px 0;
+  }
+
+  .technique-header {
+    background: linear-gradient(135deg, rgba(150, 100, 255, 0.2), rgba(80, 50, 150, 0.1));
+    border: 2px solid rgba(150, 100, 255, 0.3);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+
+  .technique-header-content {
+    max-width: 800px;
+  }
+
+  .tech-rank-badge {
+    display: inline-block;
+    background: rgba(150, 100, 255, 0.3);
+    color: #9964ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .technique-title {
+    font-size: 2.5rem;
+    margin: 15px 0;
+  }
+
+  .technique-jp-title {
+    font-size: 1.2rem;
+    color: rgba(150, 100, 255, 0.7);
+    margin: 0;
+  }
+
+  .technique-content {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(150, 100, 255, 0.2);
+    border-radius: 8px;
+    padding: 30px;
+  }
+
+  .tech-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .tech-info-box {
+    background: rgba(150, 100, 255, 0.1);
+    border: 1px solid rgba(150, 100, 255, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+  }
+
+  .tech-info-box h3 {
+    margin: 0 0 10px 0;
+    color: rgba(150, 100, 255, 0.7);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .tech-info-box p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .technique-section {
+    margin-bottom: 40px;
+  }
+
+  .technique-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: rgba(150, 100, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .technique-description {
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+  }
+
+  .core-abilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .core-ability-item {
+    padding: 12px 0;
+    padding-left: 20px;
+    border-left: 3px solid rgba(150, 100, 255, 0.3);
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+  }
+
+  .core-ability-item:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: rgba(150, 100, 255, 0.8);
+    font-weight: bold;
+  }
+
+  .navigation-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(150, 100, 255, 0.2);
+  }
+
+  .btn-back {
+    display: inline-block;
+    background: rgba(150, 100, 255, 0.2);
+    border: 1px solid rgba(150, 100, 255, 0.4);
+    color: rgba(180, 130, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background: rgba(150, 100, 255, 0.3);
+    border-color: rgba(150, 100, 255, 0.6);
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="arc-detail">
+    <div class="arc-header">
+      <div class="arc-header-content">
+        <span class="arc-type-badge">{{ arc.arcType }}</span>
+        <h1 class="arc-title">{{ arc.name }}</h1>
+        <p class="arc-jp-title">{{ arc.jpName }}</p>
+      </div>
+    </div>
+
+    <div class="arc-content">
+      <div class="arc-info-grid">
+        <div class="info-box">
+          <h3>Season</h3>
+          <p>{{ arc.season }}</p>
+        </div>
+        <div class="info-box">
+          <h3>Chapters</h3>
+          <p>{{ arc.chapters }}</p>
+        </div>
+        <div class="info-box">
+          <h3>Episodes</h3>
+          <p>{{ arc.episodes }}</p>
+        </div>
+      </div>
+
+      <section class="arc-section">
+        <h2>Synopsis</h2>
+        <p class="arc-synopsis-full">{{ arc.synopsis }}</p>
+      </section>
+
+      <section class="arc-section">
+        <h2>Key Events</h2>
+        <ul class="events-list">
+          {% for event in arc.keyEvents %}
+          <li class="event-item">{{ event }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="arc-section">
+        <h2>Main Characters</h2>
+        <div class="characters-involved">
+          {% for char in arc.mainCharacters %}
+          <span class="char-badge">{{ char }}</span>
+          {% endfor %}
+        </div>
+      </section>
+
+      <div class="navigation-links">
+        <a href="/arcs" class="btn-back">← Back to Arcs</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .arc-detail {
+    padding: 40px 0;
+  }
+
+  .arc-header {
+    background: linear-gradient(135deg, rgba(255, 50, 50, 0.2), rgba(50, 50, 255, 0.1));
+    border: 2px solid rgba(255, 50, 50, 0.3);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+
+  .arc-header-content {
+    max-width: 800px;
+  }
+
+  .arc-type-badge {
+    display: inline-block;
+    background: rgba(255, 50, 50, 0.3);
+    color: #ff3232;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .arc-title {
+    font-size: 2.5rem;
+    margin: 15px 0;
+  }
+
+  .arc-jp-title {
+    font-size: 1.2rem;
+    color: rgba(255, 50, 50, 0.7);
+    margin: 0;
+  }
+
+  .arc-content {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 50, 50, 0.2);
+    border-radius: 8px;
+    padding: 30px;
+  }
+
+  .arc-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .info-box {
+    background: rgba(255, 50, 50, 0.1);
+    border: 1px solid rgba(255, 50, 50, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+  }
+
+  .info-box h3 {
+    margin: 0 0 10px 0;
+    color: rgba(255, 50, 50, 0.7);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .info-box p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  .arc-section {
+    margin-bottom: 40px;
+  }
+
+  .arc-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: rgba(255, 50, 50, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .arc-synopsis-full {
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .event-item {
+    padding: 12px 0;
+    padding-left: 20px;
+    border-left: 3px solid rgba(255, 50, 50, 0.3);
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+  }
+
+  .event-item:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: rgba(255, 50, 50, 0.8);
+    font-weight: bold;
+  }
+
+  .characters-involved {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .char-badge {
+    background: rgba(50, 100, 255, 0.2);
+    border: 1px solid rgba(50, 100, 255, 0.4);
+    color: rgba(100, 150, 255, 0.9);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+
+  .navigation-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 50, 50, 0.2);
+  }
+
+  .btn-back {
+    display: inline-block;
+    background: rgba(255, 50, 50, 0.2);
+    border: 1px solid rgba(255, 50, 50, 0.4);
+    color: rgba(255, 100, 100, 0.9);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background: rgba(255, 50, 50, 0.3);
+    border-color: rgba(255, 50, 50, 0.6);
+  }
+</style>
+{% endblock %}

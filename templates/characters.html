@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="hero-section">
+    <h1 class="page-title">Characters</h1>
+    <p class="page-subtitle">Meet the heroes and antagonists of Jujutsu Kaisen</p>
+  </section>
+
+  <section class="content-section">
+    <div class="characters-grid">
+      {% for character in characters %}
+      <a href="/characters/{{ character.slug }}" class="character-card">
+        <div class="character-card-header">
+          <h3>{{ character.name }}</h3>
+          <span class="character-grade">{{ character.title }}</span>
+        </div>
+        <div class="character-card-body">
+          <p class="character-jp-name">{{ character.jpName }}</p>
+          <p class="character-bio">{{ character.bio[0][:100] }}...</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<style>
+  .characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .character-card {
+    background: linear-gradient(135deg, rgba(255, 200, 50, 0.1), rgba(100, 50, 0, 0.1));
+    border: 2px solid rgba(255, 200, 50, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .character-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 200, 50, 0.8);
+    box-shadow: 0 10px 30px rgba(255, 200, 50, 0.2);
+  }
+
+  .character-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+  }
+
+  .character-card-header h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .character-grade {
+    background: rgba(255, 200, 50, 0.2);
+    color: #ffc832;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .character-jp-name {
+    margin: 8px 0;
+    color: rgba(255, 200, 50, 0.6);
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  .character-bio {
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+  }
+</style>
+{% endblock %}

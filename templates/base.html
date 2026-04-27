@@ -3,13 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jujutsu Kaisen Character Showcase</title>
+    <title>Jujutsu Kaisen Wiki</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   </head>
   <body>
     <div id="kanji-bg" class="kanji-bg" aria-hidden="true"></div>
     <div id="cursor" class="cursor"></div>
     <div id="cursor-ring" class="cursor-ring"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">⬣ JUJUTSU KAISEN</a>
+        <ul class="nav-menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/characters">Characters</a></li>
+          <li><a href="/arcs">Story Arcs</a></li>
+          <li><a href="/locations">Locations</a></li>
+          <li><a href="/cursed-spirits">Cursed Spirits</a></li>
+          <li><a href="/techniques">Techniques</a></li>
+        </ul>
+      </div>
+    </nav>
+    
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>

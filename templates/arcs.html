@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <section class="hero-section">
+    <h1 class="page-title">Story Arcs</h1>
+    <p class="page-subtitle">Follow Yuji's journey through the world of Jujutsu Kaisen</p>
+  </section>
+
+  <section class="content-section">
+    <div class="arcs-grid">
+      {% for arc in arcs %}
+      <a href="/arcs/{{ arc.slug }}" class="arc-card">
+        <div class="arc-card-header">
+          <h3>{{ arc.name }}</h3>
+          <span class="arc-type">{{ arc.arcType }}</span>
+        </div>
+        <div class="arc-card-body">
+          <p class="arc-synopsis">{{ arc.synopsis[:150] }}...</p>
+          <div class="arc-meta">
+            <span class="meta-item">📖 Ch. {{ arc.chapters }}</span>
+            <span class="meta-item">📺 Ep. {{ arc.episodes }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<style>
+  .arcs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .arc-card {
+    background: linear-gradient(135deg, rgba(255, 50, 50, 0.1), rgba(0, 0, 0, 0.3));
+    border: 2px solid rgba(255, 50, 50, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .arc-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 50, 50, 0.8);
+    box-shadow: 0 10px 30px rgba(255, 50, 50, 0.2);
+  }
+
+  .arc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+  }
+
+  .arc-card-header h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .arc-type {
+    background: rgba(255, 50, 50, 0.2);
+    color: #ff3232;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .arc-synopsis {
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+  }
+
+  .arc-meta {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 50, 50, 0.2);
+    font-size: 0.9rem;
+  }
+
+  .meta-item {
+    color: rgba(255, 50, 50, 0.7);
+  }
+</style>
+{% endblock %}
