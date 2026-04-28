@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
+  <ul class="nav-links">
+    <li><a href="/characters">Characters</a></li>
+    <li><a href="/techniques">Techniques</a></li>
+    <li><a href="/arcs">Arcs</a></li>
+    <li><a href="/locations">Locations</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1 class="hero-title reveal">{{ arc.name }}<br /><em>{{ arc.jpName }}</em></h1>
+  <p class="hero-subtitle reveal">{{ arc.significance }}</p>
+</section>
+
+<section id="arc-details">
+  <div class="arc-info reveal">
+    <h2>Arc Overview</h2>
+    <p>{{ arc.description }}</p>
+    
+    <div class="arc-meta">
+      {% if arc.chapters_start %}
+      <div class="meta-item">
+        <strong>Chapters</strong>
+        <span>{{ arc.chapters_start }} - {{ arc.chapters_end }}</span>
+      </div>
+      {% endif %}
+      <div class="meta-item">
+        <strong>Significance</strong>
+        <span>{{ arc.significance }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="/arcs" class="back-link">← Back to Arcs</a>
+
+<style>
+.arc-info {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.arc-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-item strong {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.meta-item span {
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.back-link {
+  display: inline-block;
+  margin-left: 2rem;
+  margin-bottom: 4rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+</style>
+{% endblock %}

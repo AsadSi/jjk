@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
+  <ul class="nav-links">
+    <li><a href="/characters">Characters</a></li>
+    <li><a href="/techniques">Techniques</a></li>
+    <li><a href="/arcs">Arcs</a></li>
+    <li><a href="/locations" class="active">Locations</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-text">地域</div>
+  <h1 class="hero-title reveal">Key<br /><em>Locations</em></h1>
+  <p class="hero-subtitle reveal">The places where the story unfolds</p>
+</section>
+
+<section id="locations-list">
+  <p class="section-label reveal">Jujutsu World Map</p>
+  <div class="locations-grid">
+    {% for location in locations %}
+    <a href="/locations/{{ location.slug }}" class="location-card reveal">
+      <div class="location-header">
+        <h3>{{ location.name }}</h3>
+        <div class="location-jp">{{ location.jpName }}</div>
+      </div>
+      <div class="location-affiliation">{{ location.affiliation }}</div>
+      <p>{{ location.description }}</p>
+      {% if location.notableMembers %}
+      <div class="notable-members">
+        <strong>Notable Members:</strong> {{ location.notableMembers | join(", ") }}
+      </div>
+      {% endif %}
+      {% if location.significance %}
+      <div class="location-significance">{{ location.significance }}</div>
+      {% endif %}
+      <span class="link-text">Discover →</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.location-card {
+  background: white;
+  border: 1px solid var(--rule);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.location-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.location-header h3 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.location-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  min-width: max-content;
+}
+
+.location-affiliation {
+  background: var(--surface-alt);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  display: inline-block;
+  width: fit-content;
+}
+
+.notable-members {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+.notable-members strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.location-significance {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-mute);
+}
+
+.link-text {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}

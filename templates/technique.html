@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
+  <ul class="nav-links">
+    <li><a href="/characters">Characters</a></li>
+    <li><a href="/techniques">Techniques</a></li>
+    <li><a href="/arcs">Arcs</a></li>
+    <li><a href="/locations">Locations</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1 class="hero-title reveal">{{ technique.name }}<br /><em>{{ technique.jpName }}</em></h1>
+  <p class="hero-subtitle reveal">{{ technique.category }}</p>
+</section>
+
+<section id="technique-details">
+  <div class="technique-info reveal">
+    <h2>Technique Overview</h2>
+    <p>{{ technique.description }}</p>
+    
+    <div class="technique-meta">
+      <div class="meta-item">
+        <strong>Category</strong>
+        <span>{{ technique.category }}</span>
+      </div>
+      <div class="meta-item">
+        <strong>Difficulty</strong>
+        <span>{{ technique.difficulty }}</span>
+      </div>
+      {% if technique.users %}
+      <div class="meta-item">
+        <strong>Known Users</strong>
+        <span>{{ technique.users | join(", ") }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<a href="/techniques" class="back-link">← Back to Techniques</a>
+
+<style>
+.technique-info {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.technique-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.meta-item strong {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.meta-item span {
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.back-link {
+  display: inline-block;
+  margin-left: 2rem;
+  margin-bottom: 4rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+</style>
+{% endblock %}

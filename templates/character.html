@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <nav>
-  <a href="/" class="nav-logo">伏黒恵 — fushiguromegumi.com</a>
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="#identity">人物 / Profile</a></li>
-    <li><a href="#techniques">術式 / Techniques</a></li>
-    <li><a href="#jjk">呪術廻戦 / World</a></li>
-    <li><a href="#relations">縁 / Bonds</a></li>
-    <li><a href="#credits">記録 / Credits</a></li>
+    <li><a href="/characters">Characters</a></li>
+    <li><a href="/techniques">Techniques</a></li>
+    <li><a href="/arcs">Arcs</a></li>
+    <li><a href="/locations">Locations</a></li>
   </ul>
 </nav>
 
@@ -82,7 +80,7 @@
 <section id="jjk" class="jjk-section">
   <p class="section-label reveal">About the Series</p>
   <div class="jjk-inner">
-    <h2 class="reveal" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.02em;">
+    <h2 class="identity-headline reveal">
       Jujutsu <em>Kaisen</em>
     </h2>
     <blockquote class="big-quote reveal">"{{ character.jjkSection.quote }}"</blockquote>

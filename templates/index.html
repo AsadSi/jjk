@@ -1,19 +1,22 @@
 {% extends "base.html" %}
+
 {% block content %}
+<!-- Navigation -->
 <nav>
-  <a href="/" class="nav-logo">伏黒恵 — fushiguromegumi.com</a>
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
   <ul class="nav-links">
-    <li><a href="#overview">概観 / Overview</a></li>
-    <li><a href="#registry">術師 / Characters</a></li>
-    <li><a href="#series">呪術世界 / Series</a></li>
-    <li><a href="#credits">記録 / Credits</a></li>
+    <li><a href="/characters">Characters</a></li>
+    <li><a href="/techniques">Techniques</a></li>
+    <li><a href="/arcs">Arcs</a></li>
+    <li><a href="/locations">Locations</a></li>
   </ul>
 </nav>
 
+<!-- Hero Section -->
 <section class="home-hero">
   <div class="hero-kanji-mark">呪術廻戦</div>
   <div class="home-hero-content">
-    <h1>Jujutsu<br /><em style="font-style: italic; color: var(--ink-soft)">Kaisen</em></h1>
+    <h1>Jujutsu<br /><em>Kaisen</em></h1>
     <p>
       A comprehensive showcase of characters from Gege Akutami's dark fantasy masterpiece.
       Explore the sorcerers, curses, and antiheroes that define the world of jujutsu.
@@ -23,6 +26,7 @@
 
 <hr class="rule" />
 
+<!-- Universe Overview -->
 <section id="overview">
   <p class="section-label">Universe Overview</p>
   <div class="techniques-intro reveal">
@@ -35,35 +39,18 @@
   </div>
 </section>
 
-<section id="registry">
-  <p class="section-label">Character Registry</p>
-  <div class="character-grid">
-    {% for character in characters %}
-    <a href="/characters/{{ character.slug }}" class="character-card reveal">
-      <div class="card-image-wrap">
-        <img src="{{ character.image }}" alt="{{ character.name }}" class="card-image" />
-        <div class="card-jp">{{ character.jpName }}</div>
-      </div>
-      <h3>{{ character.name }}</h3>
-      <div class="role">{{ character.title }}</div>
-      <p>{{ character.bio[0] }}</p>
-      <span class="link-text">View Profile →</span>
-    </a>
-    {% endfor %}
-  </div>
-</section>
-
+<!-- Series Information -->
 <section id="series" class="jjk-section">
   <p class="section-label reveal">Series Information</p>
   <div class="jjk-inner reveal">
-    <h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.02em;">
+    <h2 class="identity-headline">
       Read / Watch<br />
       <em>Quick Guide</em>
     </h2>
     <div class="jjk-columns">
       <div class="jjk-col">
         <h3>Anime Order</h3>
-        <p>Season 1 -> Jujutsu Kaisen 0 -> Season 2 (Hidden Inventory / Shibuya Incident).</p>
+        <p>Season 1 → Jujutsu Kaisen 0 → Season 2 (Hidden Inventory / Shibuya Incident).</p>
         <p>Future arcs continue from the Culling Game storyline in the manga.</p>
       </div>
       <div class="jjk-col">
@@ -75,6 +62,29 @@
   </div>
 </section>
 
+<!-- Episode Highlights -->
+<section id="highlights">
+  <p class="section-label reveal">Must-Watch Arcs</p>
+  <div class="highlights-grid">
+    <div class="highlight-card reveal">
+      <div class="highlight-number">01</div>
+      <h3>Hidden Inventory</h3>
+      <p>Gojo's past, Geto's fall, and the mission that changed everything.</p>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-number">02</div>
+      <h3>Shibuya Incident</h3>
+      <p>A catastrophic convergence that reshapes the jujutsu world forever.</p>
+    </div>
+    <div class="highlight-card reveal">
+      <div class="highlight-number">03</div>
+      <h3>Culling Game</h3>
+      <p>Deadly battle royale where sorcerers and curses clash for survival.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Project Credits -->
 <section id="credits">
   <p class="section-label reveal">Project Credits</p>
   <div class="identity reveal">
@@ -99,6 +109,7 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="footer-left">
     Jujutsu<br />
