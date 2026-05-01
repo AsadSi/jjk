@@ -467,6 +467,7 @@ characters = [
         "eyebrow": "Grade 1 Sorcerer - Tokyo Jujutsu High",
         "image": "/static/images/nanami-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Kento_Nanami",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Nanami is a methodical Grade 1 sorcerer who left a corporate career to return to jujutsu.",
             "Pragmatic and coolly professional, he fights with precision that surpasses raw talent.",
@@ -514,6 +515,7 @@ characters = [
         "eyebrow": "Special Grade Cursed Spirit - Embodiment of Human Hatred",
         "image": "/static/images/mahito-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Mahito",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Mahito is a special grade cursed spirit born from human hatred and loathing of one another.",
             "He can perceive and reshape souls — including his own — making him a nightmare to fight.",
@@ -565,6 +567,7 @@ characters = [
         "eyebrow": "Ancient Curse User - Body Possessor",
         "image": "/static/images/kenjaku-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Kenjaku",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Kenjaku is an ancient curse user who has survived for over a thousand years by transplanting his brain into new host bodies.",
             "He is the architect behind the Shibuya Incident, the Culling Game, and the merger of Tengen with humanity.",
@@ -613,6 +616,7 @@ characters = [
         "eyebrow": "Special Grade Sorcerer - Tokyo Jujutsu High (Suspended)",
         "image": "/static/images/hakari-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Kinji_Hakari",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Hakari is a suspended third-year who runs an underground sorcerer fight club.",
             "When his Domain jackpot triggers, he becomes functionally immortal — unkillable for over four minutes.",
@@ -663,6 +667,7 @@ characters = [
         "eyebrow": "Reincarnated Ancient Sorcerer - Culling Game",
         "image": "/static/images/kashimo-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Hajime_Kashimo",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Kashimo is a reincarnated sorcerer from 400 years ago who made a deal with Kenjaku to fight Sukuna.",
             "His entire existence is defined by the desire to test himself against the strongest opponent.",
@@ -706,6 +711,7 @@ characters = [
         "eyebrow": "Special Grade Sorcerer - Independent",
         "image": "/static/images/yuki-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Yuki_Tsukumo",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Yuki is one of only four confirmed Special Grade sorcerers and operates entirely outside Jujutsu High's authority.",
             "She seeks to eliminate the root cause of curses rather than endlessly treating symptoms.",
@@ -752,6 +758,7 @@ characters = [
         "eyebrow": "Grade 1 Sorcerer - Kyoto Jujutsu High",
         "image": "/static/images/todo-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Aoi_Todo",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Todo is a Grade 1 sorcerer from Kyoto whose brash exterior conceals extraordinary tactical depth.",
             "His Boogie Woogie technique multiplies Yuji's combat effectiveness to a completely new tier.",
@@ -798,6 +805,7 @@ characters = [
         "eyebrow": "Death Painting Womb - Elder Brother",
         "image": "/static/images/choso-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Choso",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Choso is the eldest of the Death Painting Wombs — hybrid beings born from a cursed woman and a human father.",
             "Initially an enemy seeking revenge for his brothers, he discovers Yuji is also part of his bloodline.",
@@ -848,6 +856,7 @@ characters = [
         "eyebrow": "Second Year - Tokyo Jujutsu High",
         "image": "/static/images/panda-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Panda",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Panda is not a real panda — he is a cursed corpse created by Principal Yaga, with three autonomous cores that each embody a different 'sibling'.",
             "\"Panda\" is the gorilla core's chosen form, created to help him navigate human society more easily.",
@@ -897,6 +906,7 @@ characters = [
         "eyebrow": "Special Grade Cursed Spirit",
         "image": "/static/images/hanami-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Hanami",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Hanami is a special grade cursed spirit born from humanity's fear of nature and the earth.",
             "Unlike other disaster curses, Hanami fights to protect the planet against human destruction.",
@@ -948,6 +958,7 @@ characters = [
         "eyebrow": "First Year - Kyoto Jujutsu High",
         "image": "/static/images/miwa-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Kasumi_Miwa",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Miwa is a first-year from Kyoto who dreams of supporting her family through sorcery.",
             "She lacks the raw talent of her peers but makes up for it with determination and a kind heart.",
@@ -994,6 +1005,7 @@ characters = [
         "eyebrow": "Puppet User - Kyoto Jujutsu High",
         "image": "/static/images/mechamaru-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Kokichi_Muta",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Muta's body is so frail he lives in a cursed energy tank, controlling puppets from a distance.",
             "He uses the name 'Mechamaru' and operates a network of remote-controlled cursed puppets.",
@@ -1040,6 +1052,7 @@ characters = [
         "eyebrow": "Special Grade Cursed Spirit",
         "image": "/static/images/dagon-web.webp",
         "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Dagon",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
             "Dagon is a special grade cursed spirit born from humanity's fear of the ocean and its depths.",
             "The youngest of the disaster curses, Dagon learns and evolves rapidly in combat.",
@@ -1082,14 +1095,15 @@ characters = [
     {
         "id": "uro",
         "slug": "uro",
-        "name": "Uro",
+        "name": "Takako Uro",
         "title": "Ancient Sorcerer - Sky Manipulator",
-        "jpName": "宇朗",
+        "jpName": "烏鷺亨子",
         "eyebrow": "Culling Game Player - Sun, Moon, and Stars Group",
         "image": "/static/images/uro-web.webp",
-        "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Uro",
+        "imageCredit": "https://jujutsu-kaisen.fandom.com/wiki/Takako_Uro",
+        "portraitSource": {"label": "AniList character gallery", "url": "https://anilist.co"},
         "bio": [
-            "Uro is an ancient sorcerer reincarnated for the Culling Game, once a leader in a Heian-era assassination group called the Sun, Moon, and Stars.",
+            "Takako Uro is an ancient sorcerer reincarnated for the Culling Game, once a leader in a Heian-era assassination group called the Sun, Moon, and Stars.",
             "Her Sky Manipulation technique makes her one of the most evasive and lethal combatants in the Culling Game.",
             "Prideful and aggressive, she refuses to bow to anyone — including Kenjaku.",
         ],

@@ -15,7 +15,7 @@ locations = [
         "jpName": "京都呪術高専",
         "description": "A rival jujutsu school. Home to sorcerers like Aoi Todo and Maki Zenin.",
         "affiliation": "Jujutsu Society",
-        "notableMembers": ["Aoi Todo", "Maki Zenin", "Kasmo Tsukumo"],
+        "notableMembers": ["Aoi Todo", "Maki Zenin", "Kasumi Miwa"],
     },
     {
         "id": "shibuya",

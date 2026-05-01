@@ -153,6 +153,12 @@
         <a href="{{ character.imageCredit }}" target="_blank" rel="noopener noreferrer">{{ character.imageCredit }}</a>
       </p>
       {% endif %}
+      {% if character.portraitSource %}
+      <p>
+        Portrait artwork:
+        <a href="{{ character.portraitSource.url }}" target="_blank" rel="noopener noreferrer">{{ character.portraitSource.label }}</a>
+      </p>
+      {% endif %}
     </div>
   </div>
 </section>

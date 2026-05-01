@@ -39,17 +39,25 @@
 <style>
 .arcs-list {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 2rem;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .arcs-list {
+    gap: 2rem;
+    padding: 0;
+  }
 }
 
 .arc-card {
   background: white;
   border-left: 4px solid var(--ink);
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -59,35 +67,55 @@
   border-radius: 2px;
 }
 
+@media (min-width: 640px) {
+  .arc-card {
+    padding: 2rem;
+  }
+}
+
 .arc-card:hover {
   transform: translateX(8px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-left-width: 6px;
 }
 
 .arc-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .arc-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }
 
 .arc-header h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 400;
 }
 
 .arc-jp {
   font-family: 'Noto Serif JP', serif;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   color: var(--ink-soft);
 }
 
 .arc-chapters {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--ink-mute);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+@media (min-width: 640px) {
+  .arc-chapters {
+    font-size: 0.85rem;
+  }
 }
 
 .arc-significance {
@@ -96,19 +124,14 @@
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid var(--rule);
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 }
 
 .link-text {
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 0.3rem;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .arc-header {
-    flex-direction: column;
-  }
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 </style>
 {% endblock %}
