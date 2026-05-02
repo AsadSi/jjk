@@ -1,0 +1,48 @@
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="/" class="nav-logo">fushiguromegumi.com</a>
+  <div class="nav-menu-wrap" id="site-nav-menu">
+    <ul class="nav-links">
+      <li>
+        <a href="/characters" {% if request.path.startswith('/characters') %}class="active"{% endif %}>Characters</a>
+      </li>
+      <li>
+        <a href="/techniques" {% if request.path.startswith('/techniques') %}class="active"{% endif %}>Techniques</a>
+      </li>
+      <li>
+        <a href="/arcs" {% if request.path.startswith('/arcs') %}class="active"{% endif %}>Arcs</a>
+      </li>
+      <li>
+        <a href="/locations" {% if request.path.startswith('/locations') %}class="active"{% endif %}>Locations</a>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-tools">
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Switch to light theme"
+      title="Theme"
+    >
+      <svg class="theme-toggle-icon theme-toggle-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <svg class="theme-toggle-icon theme-toggle-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="nav-toggle"
+      id="site-nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav-menu"
+      aria-label="Open menu"
+    >
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>

@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<nav>
-  <a href="/" class="nav-logo">fushiguromegumi.com</a>
-  <ul class="nav-links">
-    <li><a href="/characters">Characters</a></li>
-    <li><a href="/techniques" class="active">Techniques</a></li>
-    <li><a href="/arcs">Arcs</a></li>
-    <li><a href="/locations">Locations</a></li>
-  </ul>
-</nav>
+{% include "partials/nav.html" %}
 
 <section class="hero">
   <div class="hero-bg-text">術式</div>
@@ -85,7 +77,7 @@
 
 .technique-card,
 .spirit-card {
-  background: white;
+  background: var(--listing-card-bg);
   border: 1px solid var(--rule);
   padding: 1.5rem;
   display: flex;
@@ -106,8 +98,14 @@
 
 .technique-card:hover {
   transform: translateY(-4px);
-  border-color: var(--ink);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--jjk-crimson);
+  box-shadow: var(--listing-card-shadow);
+}
+
+.spirit-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--jjk-crimson);
+  box-shadow: var(--listing-card-shadow);
 }
 
 .technique-header {
@@ -144,7 +142,7 @@
 
 .technique-category,
 .spirit-type {
-  background: var(--surface-alt);
+  background: var(--pill-tag-bg);
   padding: 0.4rem 0.8rem;
   border-radius: 2px;
   font-size: 0.7rem;

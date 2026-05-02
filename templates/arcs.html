@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<nav>
-  <a href="/" class="nav-logo">fushiguromegumi.com</a>
-  <ul class="nav-links">
-    <li><a href="/characters">Characters</a></li>
-    <li><a href="/techniques">Techniques</a></li>
-    <li><a href="/arcs" class="active">Arcs</a></li>
-    <li><a href="/locations">Locations</a></li>
-  </ul>
-</nav>
+{% include "partials/nav.html" %}
 
 <section class="hero">
   <div class="hero-bg-text">編</div>
@@ -55,8 +47,9 @@
 }
 
 .arc-card {
-  background: white;
-  border-left: 4px solid var(--ink);
+  background: var(--listing-card-bg);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--jjk-crimson);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -64,7 +57,7 @@
   text-decoration: none;
   color: var(--ink);
   transition: all 0.3s ease;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 @media (min-width: 640px) {
@@ -74,8 +67,9 @@
 }
 
 .arc-card:hover {
-  transform: translateX(8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateX(6px);
+  box-shadow: var(--listing-card-shadow);
+  border-left-color: var(--jjk-crimson-mid);
   border-left-width: 6px;
 }
 

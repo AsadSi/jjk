@@ -1,16 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<nav>
-  <a href="/" class="nav-logo">fushiguromegumi.com</a>
-  <ul class="nav-links">
-    <li><a href="/characters" class="active">Characters</a></li>
-    <li><a href="/techniques">Techniques</a></li>
-    <li><a href="/arcs">Arcs</a></li>
-    <li><a href="/locations">Locations</a></li>
-  </ul>
-</nav>
+{% include "partials/nav.html" %}
 
-<section class="hero">
+<section class="hero registry-page-hero">
   <div class="hero-bg-text">術師</div>
   <p class="hero-eyebrow reveal">22+ Characters & Counting</p>
   <h1 class="hero-title reveal">Character<br /><em>Registry</em></h1>
@@ -19,56 +11,77 @@
 
 <section id="character-registry">
   <p class="section-label reveal">Browse All Characters</p>
-  
-  <!-- Styled Filter Panel -->
-  <div class="filter-panel reveal">
-    <form method="get" class="filter-form">
-      <div class="filter-inputs">
-        <div class="filter-group">
-          <input 
-            type="text" 
-            name="search" 
-            placeholder="Search by name..." 
+
+  <div class="registry-filter-panel filter-panel reveal">
+    <form id="registry-filter-form" action="/characters" method="get" autocomplete="off">
+      <div class="registry-filter-row">
+        <div class="registry-field">
+          <label class="registry-field-label" for="registry-search">Search</label>
+          <input
+            type="search"
+            id="registry-search"
+            name="search"
+            placeholder="Name or Japanese reading…"
             value="{{ search_query }}"
-            class="search-input"
+            class="registry-input search-input"
           />
         </div>
-        
-        <div class="filter-group">
-          <select name="affiliation" class="filter-select">
-            <option value="">All Affiliations</option>
+
+        <div class="registry-field">
+          <label class="registry-field-label" for="registry-affiliation">Affiliation</label>
+          <select id="registry-affiliation" name="affiliation" class="registry-select filter-select">
+            <option value="">All affiliations</option>
             {% for aff in all_affiliations %}
-            <option value="{{ aff }}" {% if aff == affiliation_filter %}selected{% endif %}>
-              {{ aff }}
-            </option>
+            <option value="{{ aff }}" {% if aff == affiliation_filter %}selected{% endif %}>{{ aff }}</option>
             {% endfor %}
           </select>
         </div>
-      </div>
-      
-      <div class="filter-actions">
-        <button type="submit" class="filter-button">Filter</button>
-        {% if search_query or affiliation_filter %}
-        <a href="/characters" class="filter-reset">Clear</a>
-        {% endif %}
+
+        <div class="registry-field registry-field--action">
+          <span class="registry-field-label" aria-hidden="true">&nbsp;</span>
+          <button
+            type="button"
+            class="registry-clear-btn filter-reset"
+            id="registry-clear"
+            {% if not search_query and not affiliation_filter %}hidden{% endif %}
+          >
+            Clear filters
+          </button>
+        </div>
       </div>
     </form>
-    
-    {% if search_query or affiliation_filter %}
-    <div class="filter-status reveal">
-      <span class="result-count"><strong>{{ characters | length }}</strong> result(s)</span>
-      {% if search_query %}<span class="filter-tag">Search: "{{ search_query }}"</span>{% endif %}
-      {% if affiliation_filter %}<span class="filter-tag">Affiliation: {{ affiliation_filter }}</span>{% endif %}
+
+    <div
+      class="registry-filter-status filter-status reveal"
+      id="registry-filter-status"
+      {% if not search_query and not affiliation_filter %}hidden{% endif %}
+    >
+      <span class="registry-result-count result-count"
+        ><strong id="registry-result-num">{{ visible_count }}</strong> result(s)</span
+      >
+      <span class="registry-chip filter-tag" id="registry-tag-search" {% if not search_query %}hidden{% endif %}
+        >{% if search_query %}Search: "{{ search_query }}"{% endif %}</span
+      >
+      <span class="registry-chip filter-tag" id="registry-tag-aff" {% if not affiliation_filter %}hidden{% endif %}
+        >{% if affiliation_filter %}Affiliation: {{ affiliation_filter }}{% endif %}</span
+      >
     </div>
-    {% endif %}
   </div>
 
-  <div class="character-grid">
+  <div class="character-grid" id="registry-grid">
     {% if characters %}
       {% for character in characters %}
-      <a href="/characters/{{ character.slug }}" class="character-card reveal">
+      {% set visible = character_visibility[character.slug] %}
+      <a
+        href="/characters/{{ character.slug }}"
+        class="character-card reveal{% if not visible %} character-card--hidden{% endif %}"
+        data-slug="{{ character.slug }}"
+        data-name="{{ character.name | e }}"
+        data-jp="{{ character.jpName | default('', true) | e }}"
+        data-affiliations="{{ character.affiliations | join('|') | e }}"
+      >
         <div class="card-image-wrap">
-          <img src="{{ character.image }}" alt="{{ character.name }}" class="card-image" />
+          <img src="{{ character.image }}" alt="{{ character.name }}" class="card-image" loading="lazy" />
           <div class="card-jp">{{ character.jpName }}</div>
         </div>
         <h3>{{ character.name }}</h3>
@@ -77,178 +90,22 @@
         <span class="link-text">View Profile →</span>
       </a>
       {% endfor %}
+      <div
+        class="registry-empty-state registry-empty reveal"
+        id="registry-empty"
+        {% if visible_count > 0 %}hidden{% endif %}
+      >
+        <h3>No characters match</h3>
+        <p>Try adjusting your search or affiliation.</p>
+        <button type="button" class="reset-link" id="registry-show-all">Show all characters</button>
+      </div>
     {% else %}
-      <div class="no-results reveal" style="grid-column: 1 / -1; padding: 3rem 2rem; text-align: center;">
-        <h3 style="margin-bottom: 1rem;">No characters found</h3>
-        <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">Try adjusting your search or filters.</p>
-        <a href="/characters" class="reset-link">Show all characters</a>
+      <div class="registry-empty-state no-results reveal">
+        <h3>No characters found</h3>
+        <p>Try adjusting your search or filters.</p>
+        <button type="button" class="reset-link" id="registry-show-all">Show all characters</button>
       </div>
     {% endif %}
   </div>
 </section>
-
-<style>
-#character-registry {
-  padding: 3rem 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.filter-panel {
-  margin: 3rem 0;
-  padding: 2rem;
-  background: white;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-}
-
-.filter-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: flex-end;
-  margin-bottom: 1rem;
-}
-
-.filter-inputs {
-  display: flex;
-  gap: 1rem;
-  flex: 1;
-  min-width: 300px;
-}
-
-.filter-group {
-  flex: 1;
-  min-width: 200px;
-}
-
-.search-input,
-.filter-select {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  background: white;
-  color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.search-input:focus,
-.filter-select:focus {
-  outline: none;
-  border-color: var(--ink);
-  box-shadow: 0 0 0 2px rgba(14, 14, 14, 0.1);
-}
-
-.filter-actions {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.filter-button {
-  padding: 0.75rem 1.5rem;
-  background: var(--ink);
-  color: white;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  transition: background 0.3s, transform 0.2s;
-  text-transform: uppercase;
-}
-
-.filter-button:hover {
-  background: var(--ink-soft);
-  transform: translateY(-1px);
-}
-
-.filter-button:active {
-  transform: translateY(0);
-}
-
-.filter-reset {
-  padding: 0.75rem 1.5rem;
-  background: var(--surface-alt);
-  color: var(--ink-soft);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.3s;
-  display: inline-block;
-}
-
-.filter-reset:hover {
-  background: var(--rule);
-  color: var(--ink);
-}
-
-.filter-status {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-}
-
-.result-count {
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
-
-.filter-tag {
-  display: inline-block;
-  background: var(--surface-alt);
-  padding: 0.4rem 0.8rem;
-  border-radius: 2px;
-  font-size: 0.8rem;
-  color: var(--ink);
-}
-
-.reset-link {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: var(--ink);
-  color: white;
-  text-decoration: none;
-  border-radius: 2px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  transition: all 0.3s;
-}
-
-.reset-link:hover {
-  background: var(--ink-soft);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .filter-form {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .filter-inputs {
-    flex-direction: column;
-  }
-  
-  .filter-actions {
-    width: 100%;
-  }
-  
-  .filter-button,
-  .filter-reset {
-    flex: 1;
-  }
-}
-</style>
 {% endblock %}

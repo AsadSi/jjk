@@ -13,6 +13,20 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key")
 app.url_map.strict_slashes = False
 
 
+def _character_matches_filters(character, search_lower: str, affiliation: str) -> bool:
+    """Same rules as client-side filter on the characters page."""
+    if search_lower:
+        name_ok = search_lower in character["name"].lower()
+        jp_ok = search_lower in character.get("jpName", "").lower()
+        if not name_ok and not jp_ok:
+            return False
+    if affiliation:
+        aff_l = affiliation.lower()
+        if not any(aff_l in a.lower() for a in character.get("affiliations", [])):
+            return False
+    return True
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -21,36 +35,27 @@ def home():
 @app.route("/characters")
 def characters_list():
     characters = get_all_characters()
-    search_query = request.args.get("search", "").lower()
-    affiliation_filter = request.args.get("affiliation", "")
-
-    if search_query:
-        characters = [
-            c
-            for c in characters
-            if search_query in c["name"].lower()
-            or search_query in c.get("jpName", "").lower()
-        ]
-
-    if affiliation_filter:
-        characters = [
-            c
-            for c in characters
-            if any(
-                affiliation_filter.lower() in aff.lower()
-                for aff in c.get("affiliations", [])
-            )
-        ]
+    search_raw = request.args.get("search", "").strip()
+    search_lower = search_raw.lower()
+    affiliation_filter = request.args.get("affiliation", "").strip()
 
     all_affiliations = set()
-    for c in get_all_characters():
+    for c in characters:
         all_affiliations.update(c.get("affiliations", []))
+
+    visibility = {
+        c["slug"]: _character_matches_filters(c, search_lower, affiliation_filter)
+        for c in characters
+    }
+    visible_count = sum(1 for v in visibility.values() if v)
 
     return render_template(
         "characters.html",
         characters=characters,
-        search_query=search_query,
+        search_query=search_raw,
         affiliation_filter=affiliation_filter,
+        character_visibility=visibility,
+        visible_count=visible_count,
         all_affiliations=sorted(list(all_affiliations)),
     )
 

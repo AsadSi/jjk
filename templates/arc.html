@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<nav>
-  <a href="/" class="nav-logo">fushiguromegumi.com</a>
-  <ul class="nav-links">
-    <li><a href="/characters">Characters</a></li>
-    <li><a href="/techniques">Techniques</a></li>
-    <li><a href="/arcs">Arcs</a></li>
-    <li><a href="/locations">Locations</a></li>
-  </ul>
-</nav>
+{% include "partials/nav.html" %}
 
 <section class="hero">
   <h1 class="hero-title reveal">{{ arc.name }}<br /><em>{{ arc.jpName }}</em></h1>
