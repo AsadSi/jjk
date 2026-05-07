@@ -1,2 +1,3 @@
 Flask
 Pillow>=10.0
+cloudscraper>=1.3

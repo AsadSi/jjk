@@ -1,0 +1,36 @@
+{# Generic grid layout component #}
+{# Usage: {% include "partials/grid.html" with context %} #}
+{# Expected: section_id, section_label, grid_items, grid_class, empty_state #}
+
+<section id="{{ section_id }}">
+  <p class="section-label reveal">{{ section_label }}</p>
+  <div class="grid grid--{{ grid_type | default('standard') }} {{ grid_class | default('') }}">
+    {% if grid_items and grid_items | length > 0 %}
+      {% for item in grid_items %}
+        {% if grid_type == 'card' %}
+          {# Item should have: href, title, jp_name, card_fields, card_description, card_image (optional) #}
+          {% set card_href = item.href %}
+          {% set card_title = item.title %}
+          {% set card_jp_name = item.jp_name %}
+          {% set card_fields = item.card_fields %}
+          {% set card_description = item.card_description %}
+          {% set card_image = item.card_image %}
+          {% set card_tags = item.card_tags %}
+          {% include "partials/card.html" %}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% if empty_state %}
+        <div class="empty-state reveal">
+          <h3>{{ empty_state.title }}</h3>
+          <p>{{ empty_state.message }}</p>
+          {% if empty_state.action %}
+            <button type="button" class="reset-link">{{ empty_state.action }}</button>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>

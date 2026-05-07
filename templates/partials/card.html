@@ -1,0 +1,46 @@
+{# Generic card component - supports multiple content layouts #}
+{# Usage: {% include "partials/card.html" with context %} #}
+{# Required context: href, title, jpName (optional), fields (list of field objects) #}
+
+<a href="{{ href }}" class="card reveal card--{{ card_type | default('default') }}">
+  {% if card_image %}
+    <div class="card-image-wrap">
+      <img src="{{ card_image }}" alt="{{ title }}" class="card-image" loading="lazy" />
+      {% if card_image_overlay %}
+        <div class="card-overlay">{{ card_image_overlay }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="card-content">
+    <div class="card-header">
+      <h3>{{ title }}</h3>
+      {% if jp_name %}
+        <div class="card-jp">{{ jp_name }}</div>
+      {% endif %}
+    </div>
+
+    {% if card_fields %}
+      {% for field in card_fields %}
+        <div class="card-field card-field--{{ field.type | default('text') }}">
+          {% if field.label %}<span class="card-field-label">{{ field.label }}:</span>{% endif %}
+          <span class="card-field-value">{{ field.value }}</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if card_description %}
+      <p class="card-description">{{ card_description }}</p>
+    {% endif %}
+
+    {% if card_tags %}
+      <div class="card-tags">
+        {% for tag in card_tags %}
+          <span class="card-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <span class="link-text">{{ card_action | default('View more →') }}</span>
+  </div>
+</a>

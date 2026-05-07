@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
-"""Fetch roster portraits from AniList CDN and save as WebP under static/images."""
+"""Fetch character portraits from Jujutsu Kaisen fandom pages and save them as WebP under static/images."""
 
 from __future__ import annotations
 
+import re
 import sys
 import time
 from io import BytesIO
 from pathlib import Path
+
+try:
+    import cloudscraper
+except ImportError:
+    print("Install cloudscraper: pip install cloudscraper", file=sys.stderr)
+    sys.exit(1)
 
 try:
     from PIL import Image
@@ -14,13 +21,13 @@ except ImportError:
     print("Install Pillow: pip install Pillow", file=sys.stderr)
     sys.exit(1)
 
-import urllib.request
+from data.characters_py import characters
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "static" / "images"
+UA = "jjk-static-gallery/1.0 (local Flask demo; cloudscraper)"
 
-# AniList character CDN URLs (official promotional artwork mirrored on AniList).
-SOURCES: dict[str, str] = {
+FALLBACK_SOURCES: dict[str, str] = {
     "nanami-web.webp": "https://s4.anilist.co/file/anilistcdn/character/large/b133704-8wLTGjc234q2.png",
     "mahito-web.webp": "https://s4.anilist.co/file/anilistcdn/character/large/b133702-Y7JRG5vAvjIL.png",
     "kenjaku-web.webp": "https://s4.anilist.co/file/anilistcdn/character/large/b289584-KndGudJZm5Ik.jpg",
@@ -37,13 +44,21 @@ SOURCES: dict[str, str] = {
     "uro-web.webp": "https://s4.anilist.co/file/anilistcdn/character/large/b283136-NvWh6wRYmFnn.jpg",
 }
 
-UA = "jjk-static-gallery/1.0 (local Flask demo; Pillow resize)"
+META_IMAGE_RE = re.compile(
+    r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+    re.I,
+)
+INFBOX_IMAGE_RE = re.compile(
+    r'<figure[^>]+class=["\"][^"\"]*pi-item pi-image[^"\"]*["\"][\s\S]*?<img[^>]+src=["\']([^"\']+)["\']',
+    re.I,
+)
 
 
 def fetch(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return resp.read()
+    scraper = cloudscraper.create_scraper(browser={"custom": UA})
+    resp = scraper.get(url, timeout=60)
+    resp.raise_for_status()
+    return resp.content
 
 
 def save_webp(raw: bytes, dest: Path) -> None:
@@ -54,16 +69,49 @@ def save_webp(raw: bytes, dest: Path) -> None:
     im.save(dest, "WEBP", quality=86, method=6)
 
 
+def get_wiki_image_url(page_url: str) -> str:
+    scraper = cloudscraper.create_scraper(browser={"custom": UA})
+    resp = scraper.get(page_url, timeout=60)
+    resp.raise_for_status()
+    html = resp.text
+    match = META_IMAGE_RE.search(html)
+    if match:
+        url = match.group(1)
+        return url if url.startswith("http") else "https:" + url
+    match = INFBOX_IMAGE_RE.search(html)
+    if match:
+        url = match.group(1)
+        return url if url.startswith("http") else "https:" + url
+    raise ValueError("Could not find fandom portrait URL on page")
+
+
+def get_character_image_url(char: dict[str, object]) -> str:
+    page_url = char.get("imageCredit")
+    if isinstance(page_url, str) and "fandom.com" in page_url:
+        try:
+            return get_wiki_image_url(page_url)
+        except Exception as exc:
+            print(f"  warning: failed to parse fandom page for {char['id']}: {exc}")
+    fallback = FALLBACK_SOURCES.get(Path(char["image"]).name)
+    if fallback:
+        print(f"  using fallback source for {char['id']}")
+        return fallback
+    raise ValueError(f"No image source available for {char['id']}")
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for i, (fname, url) in enumerate(SOURCES.items()):
-        if i:
-            time.sleep(0.6)
-        dest = OUT_DIR / fname
-        print(f"{fname} …")
-        raw = fetch(url)
-        save_webp(raw, dest)
-        print(f"  wrote {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KiB)")
+    for char in characters:
+        dest = OUT_DIR / Path(char["image"]).name
+        print(f"{char['id']} -> {dest.name}")
+        try:
+            src_url = get_character_image_url(char)
+            raw = fetch(src_url)
+            save_webp(raw, dest)
+            print(f"  wrote {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KiB)")
+        except Exception as exc:
+            print(f"  error: {exc}")
+        time.sleep(0.6)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,17 @@
+{# Reusable hero section component #}
+{# Usage: {% include "partials/hero.html" with context %} #}
+{# Expected: hero_kanji, hero_eyebrow (optional), hero_title_main, hero_title_em, hero_subtitle #}
+
+<section class="hero{{ ' ' + hero_class if hero_class else '' }}">
+  <div class="hero-bg-text">{{ hero_kanji }}</div>
+  {% if hero_eyebrow %}
+    <p class="hero-eyebrow reveal">{{ hero_eyebrow }}</p>
+  {% endif %}
+  <h1 class="hero-title reveal">
+    {{ hero_title_main }}<br />
+    {% if hero_title_em %}<em>{{ hero_title_em }}</em>{% endif %}
+  </h1>
+  {% if hero_subtitle %}
+    <p class="hero-subtitle reveal">{{ hero_subtitle }}</p>
+  {% endif %}
+</section>

@@ -1,0 +1,59 @@
+{# Reusable filter panel component #}
+{# Usage: {% include "partials/filter-bar.html" with context %} #}
+{# Expected: filter_id, filters (list of filter objects), form_action, visible_count, active_filters #}
+
+<div class="filter-panel reveal">
+  <form id="{{ filter_id }}-form" action="{{ form_action }}" method="get" autocomplete="off">
+    <div class="filter-row">
+      {% for filter in filters %}
+        <div class="filter-field">
+          <label class="filter-label" for="{{ filter.id }}">{{ filter.label }}</label>
+          {% if filter.type == 'search' %}
+            <input
+              type="search"
+              id="{{ filter.id }}"
+              name="{{ filter.name }}"
+              placeholder="{{ filter.placeholder }}"
+              value="{{ filter.value | default('') }}"
+              class="filter-input search-input"
+            />
+          {% elif filter.type == 'select' %}
+            <select id="{{ filter.id }}" name="{{ filter.name }}" class="filter-select">
+              <option value="">{{ filter.default_label | default('All') }}</option>
+              {% for option in filter.options %}
+                <option value="{{ option.value }}" {% if option.value == filter.value %}selected{% endif %}>
+                  {{ option.label }}
+                </option>
+              {% endfor %}
+            </select>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="filter-field filter-field--action">
+        <span class="filter-label" aria-hidden="true">&nbsp;</span>
+        <button
+          type="button"
+          class="filter-clear-btn filter-reset"
+          id="{{ filter_id }}-clear"
+          {% if not active_filters %}hidden{% endif %}
+        >
+          Clear filters
+        </button>
+      </div>
+    </div>
+  </form>
+
+  {% if active_filters %}
+    <div class="filter-status reveal">
+      <span class="filter-result-count">
+        <strong id="{{ filter_id }}-count">{{ visible_count }}</strong> result(s)
+      </span>
+      {% for active_filter in active_filters %}
+        <span class="filter-tag" id="{{ filter_id }}-tag-{{ active_filter.key }}">
+          {{ active_filter.label }}: {{ active_filter.value }}
+        </span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

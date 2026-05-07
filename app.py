@@ -4,9 +4,11 @@ from flask import Flask, abort, render_template, request
 
 from data.abilities import get_all_cursed_spirits
 from data.arcs import get_all_arcs, get_arc
+from data.base import BaseDataModel
 from data.characters_py import get_all_characters, get_character
 from data.locations import get_all_locations, get_location
 from data.techniques import get_all_techniques, get_technique
+from utils import filter_items, get_active_filters
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key")
@@ -14,7 +16,7 @@ app.url_map.strict_slashes = False
 
 
 def _character_matches_filters(character, search_lower: str, affiliation: str) -> bool:
-    """Same rules as client-side filter on the characters page."""
+    """Check if character matches search and affiliation filters."""
     if search_lower:
         name_ok = search_lower in character["name"].lower()
         jp_ok = search_lower in character.get("jpName", "").lower()
@@ -27,6 +29,49 @@ def _character_matches_filters(character, search_lower: str, affiliation: str) -
     return True
 
 
+def _render_list_page(template_name, all_items, filters_config):
+    """
+    Generic handler for list pages with filters.
+    
+    Args:
+        template_name: Template file to render
+        all_items: List of items to display
+        filters_config: Dict with keys: search_fields, filter_fields
+    """
+    search_term = request.args.get("search", "").strip()
+    filter_dict = {}
+    for field in filters_config.get("filter_fields", []):
+        filter_dict[field] = request.args.get(field, "").strip()
+
+    # Filter items
+    items, visibility = filter_items(
+        all_items,
+        search_term=search_term,
+        field_filters=filter_dict,
+        search_fields=filters_config.get("search_fields", ["name"]),
+    )
+
+    visible_count = sum(1 for v in visibility.values() if v)
+    active_filters = get_active_filters({k: v for k, v in filter_dict.items() if v})
+
+    # Get unique values for filter dropdowns
+    filter_options = {}
+    for field in filters_config.get("filter_fields", []):
+        filter_options[field] = BaseDataModel.get_all_unique_values(all_items, field)
+
+    context = {
+        "items": items,
+        "search_query": search_term,
+        "item_visibility": visibility,
+        "visible_count": visible_count,
+        "active_filters": active_filters,
+        "filter_options": filter_options,
+    }
+    context.update(filter_dict)
+
+    return render_template(template_name, **context)
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -34,6 +79,7 @@ def home():
 
 @app.route("/characters")
 def characters_list():
+    """List all characters with search and affiliation filters."""
     characters = get_all_characters()
     search_raw = request.args.get("search", "").strip()
     search_lower = search_raw.lower()
@@ -62,6 +108,7 @@ def characters_list():
 
 @app.route("/characters/<slug>")
 def character_page(slug: str):
+    """Display individual character detail page."""
     character = get_character(slug)
     if not character:
         abort(404)
@@ -70,6 +117,7 @@ def character_page(slug: str):
 
 @app.route("/techniques")
 def techniques():
+    """List all techniques and cursed spirits."""
     return render_template(
         "techniques.html",
         techniques=get_all_techniques(),
@@ -79,6 +127,7 @@ def techniques():
 
 @app.route("/techniques/<slug>")
 def technique_page(slug: str):
+    """Display individual technique detail page."""
     technique = get_technique(slug)
     if not technique:
         abort(404)
@@ -87,11 +136,13 @@ def technique_page(slug: str):
 
 @app.route("/arcs")
 def arcs_list():
+    """List all story arcs."""
     return render_template("arcs.html", arcs=get_all_arcs())
 
 
 @app.route("/arcs/<slug>")
 def arc_page(slug: str):
+    """Display individual arc detail page."""
     arc = get_arc(slug)
     if not arc:
         abort(404)
@@ -100,11 +151,13 @@ def arc_page(slug: str):
 
 @app.route("/locations")
 def locations():
+    """List all locations."""
     return render_template("locations.html", locations=get_all_locations())
 
 
 @app.route("/locations/<slug>")
 def location_page(slug: str):
+    """Display individual location detail page."""
     location = get_location(slug)
     if not location:
         abort(404)
@@ -113,6 +166,7 @@ def location_page(slug: str):
 
 @app.errorhandler(404)
 def not_found(_error):
+    """Handle 404 errors."""
     return render_template("404.html"), 404
 
 
