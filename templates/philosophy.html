@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "partials/nav.html" %}
+
+<!-- Hero Section -->
+<section class="home-hero">
+  <div class="kanji-bg">呪</div>
+  <div class="home-hero-content">
+    <span class="hero-kanji">呪術廻戦 &nbsp;——&nbsp; 哲学</span>
+    <h1>The <em>Philosophy</em><br>of Cursed<br>Energy</h1>
+    <p>What does it mean to live and die in a world defined by suffering? Jujutsu Kaisen is not just action — it is a brutal interrogation of morality, purpose, and the cost of power.</p>
+    <div class="hero-cta-group">
+      <a href="#pillars" class="hero-cta primary">Explore Pillars</a>
+      <a href="#themes" class="hero-cta">Deep Dive</a>
+    </div>
+  </div>
+  <div class="hero-quote-line">
+    <blockquote>"I don't think I need a reason to help someone."</blockquote>
+    <cite>— Itadori Yuji</cite>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- Intro Band -->
+<section class="intro-band">
+  <div class="intro-band-inner">
+    <div class="intro-stat reveal">
+      <span class="num">三</span>
+      <p>Core philosophical conflicts</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-stat reveal reveal-delay-2">
+      <span class="num">七</span>
+      <p>Thinkers who shaped the world</p>
+    </div>
+    <div class="intro-divider"></div>
+    <div class="intro-stat reveal reveal-delay-4">
+      <span class="num">一</span>
+      <p>Impossible question at the center</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section id="pillars">
+  <div class="container">
+    <div class="pillars-header">
+      <div>
+        <span class="section-label">The Foundation</span>
+        <h2 class="section-title reveal">Three <em>Pillars</em><br>of Jujutsu<br>Philosophy</h2>
+      </div>
+      <p class="pillars-intro reveal reveal-delay-2">
+        Every character in Jujutsu Kaisen embodies a philosophical stance. Gege Akutami constructs not a moral universe, but a moral collision — where each worldview has internal logic and catastrophic consequences.
+      </p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <span class="pillar-num">01</span>
+        <span class="pillar-icon">義</span>
+        <h3>Righteous Death</h3>
+        <p>Itadori's mission is not survival but ensuring that others die surrounded by people, not alone in a curse's maw. Death is inevitable — its <em>quality</em> is the only variable worth fighting for.</p>
+      </div>
+      <div class="pillar-card reveal reveal-delay-2">
+        <span class="pillar-num">02</span>
+        <span class="pillar-icon">理</span>
+        <h3>Utilitarian Culling</h3>
+        <p>Geto and the higher-ups operate on cold arithmetic: the suffering of the few for the stability of the many. A philosophy that demands monstrous acts in the name of rational order.</p>
+      </div>
+      <div class="pillar-card reveal reveal-delay-3">
+        <span class="pillar-num">03</span>
+        <span class="pillar-icon">無</span>
+        <h3>Nihilistic Liberation</h3>
+        <p>Sukuna and Mahito see human attachment as the root of all cursed energy. To transcend suffering means transcending the very bonds that create meaning — a void masquerading as freedom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Cursed Energy <span>呪力</span></span>
+    <span class="marquee-item">Death & Dignity <span>死</span></span>
+    <span class="marquee-item">Will to Power <span>力</span></span>
+    <span class="marquee-item">The Body as Vessel <span>肉体</span></span>
+    <span class="marquee-item">Moral Ambiguity <span>曖昧</span></span>
+    <span class="marquee-item">Existential Dread <span>恐怖</span></span>
+    <span class="marquee-item">Selfhood & Sacrifice <span>自己</span></span>
+    <span class="marquee-item">Cursed Energy <span>呪力</span></span>
+    <span class="marquee-item">Death & Dignity <span>死</span></span>
+    <span class="marquee-item">Will to Power <span>力</span></span>
+    <span class="marquee-item">The Body as Vessel <span>肉体</span></span>
+    <span class="marquee-item">Moral Ambiguity <span>曖昧</span></span>
+    <span class="marquee-item">Existential Dread <span>恐怖</span></span>
+    <span class="marquee-item">Selfhood & Sacrifice <span>自己</span></span>
+  </div>
+</div>
+
+<!-- Quotes -->
+<section id="quotes">
+  <div class="quotes-inner">
+    <span class="section-label">Words That Cut</span>
+    <h2 class="section-title reveal">The <em>Lines</em><br>That Define<br>the Series</h2>
+
+    <div class="quote-slider" id="quoteSlider">
+      <div class="quote-item active">
+        <blockquote>"Jujutsu is unfair. That's why we have to teach our kids the right way to be unfair."</blockquote>
+        <cite>— Gojo Satoru</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>"If you can't even save one person, how can you save everyone?"</blockquote>
+        <cite>— Nanami Kento</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>"Loneliness is the source of all evil. A person who grows up with no love will be consumed by it."</blockquote>
+        <cite>— Geto Suguru</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>"You are the average of the people around you. So surround yourself with people who carry more than you can."</blockquote>
+        <cite>— Gojo Satoru</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>"I don't know how to live, but I want to keep moving forward."</blockquote>
+        <cite>— Itadori Yuji</cite>
+      </div>
+    </div>
+
+    <div class="quote-dots" id="quoteDots"></div>
+  </div>
+</section>
+
+<!-- Thinkers -->
+<section id="thinkers">
+  <div class="container">
+    <span class="section-label reveal">The Minds</span>
+    <h2 class="section-title reveal">Characters <em>as</em><br>Philosophers</h2>
+
+    <div class="thinkers-grid">
+      <div class="thinker-card reveal">
+        <span class="thinker-kanji">悠</span>
+        <h3>Itadori Yuji</h3>
+        <span class="thinker-role">Existentialist</span>
+        <p>Yuji lives in the tradition of Camus's absurd hero — aware that the world offers no inherent meaning, yet choosing compassion and action anyway. His grandfather's dying words become his categorical imperative.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-1">
+        <span class="thinker-kanji">五</span>
+        <h3>Gojo Satoru</h3>
+        <span class="thinker-role">Nietzschean Superman</span>
+        <p>Gojo embodies Nietzsche's Übermensch — transcending conventional morality through sheer power. His pedagogy is revolutionary: he reshapes the jujutsu world not by force alone, but by cultivating the next generation.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-2">
+        <span class="thinker-kanji">夏</span>
+        <h3>Nanami Kento</h3>
+        <span class="thinker-role">Stoic Realist</span>
+        <p>The most Stoic figure in the series. Nanami has calculated what life owes him and found the answer wanting — yet he continues. His philosophy: fulfil your duty not because reward exists, but because duty is its own foundation.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-3">
+        <span class="thinker-kanji">夏</span>
+        <h3>Geto Suguru</h3>
+        <span class="thinker-role">Tragic Utilitarian</span>
+        <p>Geto begins as an idealist, breaks under the weight of a world that will not reward goodness, and becomes a utilitarian monster. His arc is the series' most honest depiction of how ideology devours the person who holds it.</p>
+      </div>
+      <div class="thinker-card reveal">
+        <span class="thinker-kanji">伏</span>
+        <h3>Fushiguro Megumi</h3>
+        <span class="thinker-role">Selective Consequentialist</span>
+        <p>Megumi operates on a morality of personal calculus — he will save those he deems worth saving and abandon the rest. This cold logic protects him until it consumes him, making him the series' most tragic study in self-deception.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-1">
+        <span class="thinker-kanji">真</span>
+        <h3>Mahito</h3>
+        <span class="thinker-role">Embodied Nihilism</span>
+        <p>Mahito is not a villain with a goal — he is nihilism given flesh. His power to reshape souls literalises his philosophy: the self is unstable, boundaries are illusions, and suffering is the only truth the universe offers.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-2">
+        <span class="thinker-kanji">宿</span>
+        <h3>Ryomen Sukuna</h3>
+        <span class="thinker-role">Pure Will to Power</span>
+        <p>Sukuna is Schopenhauer's blind will made manifest. He does not justify himself. He exists as raw desire and dominance, making him simultaneously the most honest and most terrifying entity in the series.</p>
+      </div>
+      <div class="thinker-card reveal reveal-delay-3">
+        <span class="thinker-kanji">禪</span>
+        <h3>Yuta Okkotsu</h3>
+        <span class="thinker-role">Love as Metaphysics</span>
+        <p>Yuta's story is a meditation on grief, attachment, and whether love that refuses to let go becomes a curse. Rika is not just a curse — she is a philosophical problem: when does devotion become destruction?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Themes -->
+<section id="themes">
+  <div class="container">
+    <span class="section-label reveal">Deep Reading</span>
+    <h2 class="section-title reveal">Core <em>Themes</em><br>& Their<br>Implications</h2>
+
+    <div class="themes-layout">
+      <div class="themes-left">
+
+        <div class="theme-block reveal">
+          <span class="theme-tag">Metaphysics</span>
+          <h3>The Soul as Territory</h3>
+          <p>Mahito's Idle Transfiguration externalises a profound metaphysical claim: the soul is not fixed but plastic, shaped by experience and trauma. Jujutsu Kaisen forces viewers to confront whether personal identity has a stable core, or whether the self is perpetually under construction — and under threat.</p>
+        </div>
+
+        <div class="theme-block reveal reveal-delay-1">
+          <span class="theme-tag">Ethics</span>
+          <h3>The Problem of Dirty Hands</h3>
+          <p>Sorcerers routinely commit morally compromised acts for ostensibly good ends. The series refuses to resolve this tension cleanly. Nanami's 9-to-5 philosophy, Gojo's revolutionary overreach, Geto's ideological collapse — all represent different answers to the question: how much of yourself can you sacrifice for a cause before the cause is no longer yours?</p>
+        </div>
+
+        <div class="theme-block reveal reveal-delay-2">
+          <span class="theme-tag">Mortality</span>
+          <h3>What is a Good Death?</h3>
+          <p>This is Yuji's central obsession and the series' most recurring question. Drawing on Japanese cultural attitudes toward death — from bushido to Buddhist impermanence — Akutami constructs a universe where the how of dying carries more moral weight than the why of living. Death is not an end condition; it is a final characterisation.</p>
+        </div>
+
+        <div class="theme-block reveal reveal-delay-3">
+          <span class="theme-tag">Power</span>
+          <h3>Cursed Energy as Emotion Made Manifest</h3>
+          <p>The metaphysics of the series are entirely Romantic: negative emotion generates destructive power; the stronger the feeling, the stronger the curse. This creates a universe where emotional repression has literal consequences, and where the most psychologically wounded individuals wield the most catastrophic abilities.</p>
+        </div>
+
+        <div class="theme-block reveal">
+          <span class="theme-tag">Agency</span>
+          <h3>The Vessel and the Will</h3>
+          <p>Itadori's body as Sukuna's container raises questions of autonomy that the series never fully resolves. What is the moral status of an action performed by a body whose will is overridden? Yuji's guilt over Sukuna's atrocities mirrors real-world debates around complicity, possession, and the limits of personal responsibility.</p>
+        </div>
+
+      </div>
+
+      <div class="themes-sticky">
+        <div class="themes-sticky-card reveal">
+          <span class="big-kanji">生</span>
+          <h4>The Question at the Centre</h4>
+          <p>Every arc returns to the same impossible problem: in a world where suffering is unavoidable and curses are born from human negativity, is the elimination of negative emotion the only path to peace — and if so, what remains of humanity afterward?</p>
+        </div>
+        <div class="themes-sticky-card reveal reveal-delay-2">
+          <span class="big-kanji">理</span>
+          <h4>Philosophical Parallel</h4>
+          <p>The series reads best alongside Camus's <em>The Myth of Sisyphus</em>, Nietzsche's <em>Thus Spoke Zarathustra</em>, and the Buddhist concept of <em>dukkha</em> — the inescapable suffering that underpins all existence. Akutami synthesises these into something distinctly, violently Japanese.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-big">Jujutsu <em>Kaisen</em></span>
+      <p>A philosophical companion to Gege Akutami's dark masterpiece. Exploring the ideas beneath the cursed energy.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#pillars">Three Pillars</a></li>
+        <li><a href="#quotes">Notable Quotes</a></li>
+        <li><a href="#thinkers">Character Philosophy</a></li>
+        <li><a href="#themes">Core Themes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Context</h5>
+      <ul>
+        <li><a href="#">Manga vs Anime</a></li>
+        <li><a href="#">Akutami's Influences</a></li>
+        <li><a href="#">Japanese Mythology</a></li>
+        <li><a href="#">Reading Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Fan philosophical analysis · Not affiliated with Shueisha, MAPPA, or Gege Akutami · All characters remain property of their respective rights holders.</p>
+    <span class="kanji-stamp">呪</span>
+  </div>
+</footer>
+
+<script>
+  // Quote Slider
+  const quotes = document.querySelectorAll('.quote-item');
+  const dotsContainer = document.getElementById('quoteDots');
+  let currentQuote = 0;
+
+  quotes.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Quote ${i + 1}`);
+    dot.addEventListener('click', () => goToQuote(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToQuote(index) {
+    quotes[currentQuote].classList.remove('active');
+    dotsContainer.children[currentQuote].classList.remove('active');
+    currentQuote = index;
+    quotes[currentQuote].classList.add('active');
+    dotsContainer.children[currentQuote].classList.add('active');
+  }
+
+  setInterval(() => {
+    goToQuote((currentQuote + 1) % quotes.length);
+  }, 5000);
+</script>
+
+{% endblock %}

@@ -14,6 +14,9 @@
       <li>
         <a href="/locations" {% if request.path.startswith('/locations') %}class="active"{% endif %}>Locations</a>
       </li>
+      <li>
+        <a href="/philosophy" {% if request.path == '/philosophy' %}class="active"{% endif %}>Philosophy</a>
+      </li>
     </ul>
   </div>
   <div class="nav-tools">

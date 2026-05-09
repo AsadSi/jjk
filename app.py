@@ -164,6 +164,12 @@ def location_page(slug: str):
     return render_template("location.html", location=location)
 
 
+@app.route("/philosophy")
+def philosophy():
+    """Display philosophy page."""
+    return render_template("philosophy.html")
+
+
 @app.errorhandler(404)
 def not_found(_error):
     """Handle 404 errors."""
